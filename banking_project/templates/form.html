@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <center><button style="background-color:green;padding:16px 24px;border:none;margin-top:50px;"onclick="showForm()">Get Application form</button>
+        </center>
+        <meta charset="UTF-8">
+        <title>Application Form</title>
+        <link rel="stylesheet" href="./responsiveRegistration.css">
+        <script type="text/javascript" lang="javascript" src="./responsiveRegistration.js"></script>
+         <script type="text/javascript">
+            function showMessage() {
+                alert("Application accepted");
+            }
+        </script>
+        <script type="text/javascript">
+    function showForm() {
+        document.getElementById('formElement').style.display = 'block';
+    }
+</script>
+<script>
+var districtObject = {
+  "Malappuram":
+    ["Tirur", "Perinthalmanna", "Kondotty"],
+
+  "Kozhikode":
+    ["Mukkam", "Padanilam", "Koduvally"],
+
+     "Wayanad":
+    ["Mananthavadi", "Kalpatta", "Batheri"],
+
+     "Ernakulam":
+    ["Aluva", "Nedumbassery", "Kochi"],
+
+     "Kannur":
+    ["Thalassery", "Parassinikadavu", "Thaliparambu"],
+
+}
+window.onload = function() {
+  var districtSel = document.getElementById("district");
+  var branchSel = document.getElementById("branch");
+  for (var x in districtObject) {
+    districtSel.options[districtSel.options.length] = new Option(x, x);
+  }
+  districtSel.onchange = function() {
+
+branchSel.length = 1;
+
+   for (var y in districtObject[this.value]) {
+      branchSel.options[branchSel.options.length] = new Option(districtObject[this.value][y], districtObject[this.value][y]);
+    }
+  }
+}
+</script>
+    </head>
+<style>
+  *{box-sizing: border-box;
+}
+input[type=text], input[type=email], input[type=number], input[type=select], input[type=date],input[type=select],input[type=password], input[type=tel]
+{
+    width: 45%;
+    padding: 12px;
+    border: 1px solid rgb(168, 166, 166);
+    border-radius: 4px;
+    resize: vertical;
+}
+textarea{
+    width:45%;
+    padding: 12px;
+    border: 1px solid rgb(168, 166, 166);
+    border-radius: 4px;
+    resize: vertical;
+}
+input[type=radio],input[type=checkbox]{
+    width: 1%;
+    padding-left: 0%;
+    border: 1px solid rgb(168, 166, 166);
+    border-radius: 4px;
+    resize: vertical;
+}
+h1{
+    font-family: Arial;
+    font-size: medium;
+    font-style: normal;
+    font-weight: bold;
+    color: brown;
+    text-align: center;
+    text-decoration: underline;
+}
+label{
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float:left;
+}
+input[type=submit]:hover {
+background-color: #32a336;
+}
+.container{
+
+    border-radius: 5px;
+    background-color:#f2f2f2;
+    padding: 20px;
+}
+.col-10{
+    float: left;
+    width:10%;
+    margin-top: 6px;
+}
+.col-90{
+    float: left;
+    width: 90%;
+    margin-top: 6px;
+}
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px) {
+    .col-10,.col-90,input[type=submit]{
+        width: 100%;
+        margin-top: 0;
+    }}
+</style>
+    <body>
+
+    <form  action="" method="post" onSubmit="Application accepted" id="formElement" style="display: none;">
+         {% csrf_token %}
+    <center>
+        <h2><b>Application Form</b></h2>
+      </center>
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <label for="name">Name:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="name" name="name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10">
+                  <label for="birthday">Birthday:</label>
+                </div>
+                <div class="col-90">
+                 <input type="date" id="birthday" name="Date Of Birth">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="age">Age:</label>
+                </div>
+                <div class="col-90">
+                    <input type="tel" id="age" name="mobile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="gender" required>Gender:</label>
+                </div>
+                <div class="col-90">
+                    <input type="radio" id="male" name="gender" value="male"/>Male
+                    <input type="radio" id="female" name="gender" value="female"/>Female
+                </div>
+            </div>
+
+
+             <div class="row">
+                <div class="col-10">
+                    <label for="mobile">Phone Number:</label>
+                </div>
+                <div class="col-90">
+                    <input type="tel" id="mobile" name="mobile">
+                </div>
+            </div>
+           <div class="row">
+                <div class="col-10">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="col-90">
+                    <input type="email" id="email" name="email" >
+                </div>
+            </div>
+          <div class="row">
+                <div class="col-10">
+                    <label for="address">Address:</label>
+                </div>
+                <div class="col-90">
+                    <textarea name="address" id="address" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+ <div class="row">
+                <div class="col-10">
+                     <label for="district">District:</label>
+                    </div>
+      <div class="col-90">
+      <select name="district" id="district">
+
+
+    <option value="" selected="selected">Select district</option>
+  </select>
+  </div>
+     </div>
+     <div class="row">
+                <div class="col-10">
+                      <label for="branch">Branch:</label>
+                    </div>
+                     <div class="col-90">
+<select name="branch" id="branch">
+
+
+    <option value="" selected="selected">Please select district first</option>
+  </select>
+  </div>
+         </div>
+
+ <div class="row">
+                <div class="col-10">
+                    <label for="account" required >Account Type:</label>
+                </div>
+                <div class="col-90">
+                    <select name="account" id="account">
+                        <option value=" ">Select Account Type:</option>
+                        <option value="savings">Savings</option>
+                        <option value="current">Current</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="materials">Materials provide:</label>
+                </div>
+                <div class="col-90">
+                    <input type="checkbox" class="materials" id="cs" name="materials[]" value="debit card">Debit card<br/>
+                    <input type="checkbox" class="materials" id="it" name="materials[]" value="credit card">Credit card<br/>
+                    <input type="checkbox" class="materials" id="ca" name="materials[]" value="cheque book">Cheque book<br/>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+<button style="background-color:green;padding:12px 24px;border:none;font-size:16px;float:left;" id="btnShowMsg" value="Submit" onClick="showMessage()">Submit</button>
+<a href="{% url 'registration:logout' %}">
+<button  style="background-color:red;padding:12px 24px;border:none;font-size:16px;margin-left:640px;" type="button">Logout</button>
+</a>
+<p id="demo"></p>
+</div>
+              <div class="row">
+<a href="/">See our services</a>
+        </div>
+        </div>
+
+    </form>
+    </body>
+
+</html>
